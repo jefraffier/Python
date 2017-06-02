@@ -1,0 +1,79 @@
+from tkinter import *
+import dbm, sys
+    
+def addbdd(a,b):
+    bdd1[a]=b
+    
+def sprbdd(a,b):
+    del bdd1[a]
+        
+def ajouter():
+    fenaj=Tk()
+    label=Label(fenaj, text='Ajouter etudiant')
+    label.pack()
+    
+    prenom= Entry(fenaj)
+    prenom.insert(END, 'prenom')
+    prenom.pack()
+
+    nom= Entry(fenaj)
+    nom.insert(END, 'nom')
+    nom.pack()
+    
+    a=prenom.get()
+    b=nom.get()
+    
+    validation=Button(fenaj, text='Valider', command=(addbdd(a,b)))
+    validation.pack()
+    fermer=Button(fenaj, text='Quitter', command=fenaj.destroy)
+    fermer.pack()
+    fenaj.mainloop()
+    
+def suppr():
+    fenspr=Tk()
+    label=Label(fenspr, text='Supprimer etudiant')
+    label.pack()
+    
+    prenom= Entry(fenspr)
+    prenom.insert(END, 'prenom')
+    prenom.pack()
+
+    nom= Entry(fenspr)
+    nom.insert(END, 'nom')
+    nom.pack()
+    
+    a=prenom.get()
+    b=nom.get()
+    
+    validation=Button(fenspr, text='Valider', command=(sprbdd(a,b)))
+    validation.pack()
+    fermer=Button(fenspr, text='Quitter', command=fenspr.destroy)
+    fermer.pack()
+    fenspr.mainloop()
+    
+def voir():
+    a=bdd1.keys()
+    for key in a:
+        print(key)
+
+
+
+bdd1 = dbm.open('test', 'c')
+fenetre=Tk()
+
+label=Label(fenetre, text='IHM')
+label.pack()
+
+bouton1=Button(fenetre, text='Quitter', command=fenetre.destroy)
+bouton1.pack()
+
+bouton2=Button(fenetre, text='Ajouter', command=ajouter)
+bouton2.pack()
+
+bouton3=Button(fenetre, text='Voir', command=voir)
+bouton3.pack()
+
+bouton4=Button(fenetre, text='Supprimer', command=suppr)
+bouton4.pack()
+
+fenetre.mainloop()
