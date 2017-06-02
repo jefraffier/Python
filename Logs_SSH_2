@@ -1,0 +1,12 @@
+#-*- coding: utf-8 -*-
+from glob import iglob
+import shutil
+import os
+
+PATH = r'C:\Users\Jean-François\Desktop\Python 30-03\ssh\logs'
+
+destination = open('full_log', 'w')
+for filename in iglob(os.path.join(PATH, '*')):
+    shutil.copyfileobj(open(filename, 'r'), destination)
+destination.close()
+
